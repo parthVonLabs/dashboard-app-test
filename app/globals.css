@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #111827; /* darker foreground for better contrast */
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Override some Tailwind gray utilities for darker demo text */
+.text-gray-500 { color: #374151 !important; }
+.text-gray-600 { color: #111827 !important; }
+
+
+.widget-box {
+  background: white;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 6px;
+  height: 100%;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+}
+
+/* small responsive container */
+.layout {
+  max-width: 1200px;
+  margin: 0 auto;
+}
