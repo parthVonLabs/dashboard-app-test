@@ -25,9 +25,9 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Override some Tailwind gray utilities for darker demo text */
-.text-gray-500 { color: #374151 !important; }
-.text-gray-600 { color: #111827 !important; }
+/* Override some Tailwind gray utilities to ensure black text for demo */
+.text-gray-500 { color: #000000 !important; }
+.text-gray-600 { color: #000000 !important; }
 
 
 .widget-box {

@@ -1,13 +1,8 @@
 import { NextResponse } from "next/server";
-
-// In-memory saved layout for POC. This will reset when server restarts.
-let savedLayout = [];
-
-// widgetConfigs keyed by widget id. Example: { '1': { type: 'line', options: {...} } }
-let savedWidgets: Record<string, any> = {};
+import { getLayout, setLayout, getWidgets, setWidgets } from "../_store";
 
 export async function GET() {
-  return NextResponse.json({ layout: savedLayout, widgets: savedWidgets });
+  return NextResponse.json({ layout: getLayout(), widgets: getWidgets() });
 }
 
 export async function POST(req: Request) {
@@ -15,10 +10,10 @@ export async function POST(req: Request) {
     const body = await req.json();
     const okLayout = body?.layout && Array.isArray(body.layout);
     const okWidgets = body?.widgets && typeof body.widgets === "object";
-    if (okLayout) savedLayout = body.layout.map((it: any) => ({ ...it }));
-    if (okWidgets) savedWidgets = { ...body.widgets };
+    if (okLayout) setLayout(body.layout.map((it: any) => ({ ...it })));
+    if (okWidgets) setWidgets({ ...body.widgets });
     if (okLayout || okWidgets) {
-      return NextResponse.json({ layout: savedLayout, widgets: savedWidgets });
+      return NextResponse.json({ layout: getLayout(), widgets: getWidgets() });
     }
     return NextResponse.json({ error: "invalid payload" }, { status: 400 });
   } catch (e) {

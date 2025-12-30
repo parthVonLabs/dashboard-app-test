@@ -1,4 +1,4 @@
-export type SizeKey = "small" | "medium" | "large";
+export type SizeKey = "tiny" | "small" | "medium" | "large";
 
 function rand(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -7,8 +7,11 @@ function rand(min: number, max: number) {
 // Generate random numeric dataset according to size partition rules
 export function generateDataset(size: SizeKey) {
   let len = 0;
-  if (size === "small") {
-    len = rand(20, 900); // < 1k
+  // tiny: <100, small: <500, medium: 1k-10k, large: >10k
+  if (size === "tiny") {
+    len = rand(10, 90); // <100
+  } else if (size === "small") {
+    len = rand(50, 450); // <500
   } else if (size === "medium") {
     len = rand(1000, 9000); // 1k - 10k
   } else {
