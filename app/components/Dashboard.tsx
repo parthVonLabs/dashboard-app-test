@@ -84,7 +84,7 @@ export default function Dashboard() {
     // create new widget from modalConfig
     const id = Date.now().toString();
     const sizeKey: SizeKey = "md";
-    const s = SIZE_MAP[sizeKey as any] || { w: 4, h: 3 };
+    const s = SIZE_MAP[sizeKey] || { w: 4, h: 3 };
     const newItem: Layout = { i: id, x: 0, y: 0, w: s.w, h: s.h };
     const newLayout = [...layout, newItem];
     const newWidgets = { ...widgets };
@@ -180,7 +180,7 @@ export default function Dashboard() {
                           <span className="widget-drag-handle cursor-move font-medium">{(widgets[item.i]?.data?.length ?? 0)} pts</span>
                           <div className="inline-flex rounded overflow-hidden border">
                             {(["sm", "md", "lg", "xl"] as Array<Exclude<SizeKey, "random">>).map((k) => {
-                              const s = SIZE_MAP[k as any];
+                              const s = SIZE_MAP[k];
                               const active = (widgets[item.i]?.layoutSize === k) || (item.w === s.w && item.h === s.h);
                               return (
                                 <button
